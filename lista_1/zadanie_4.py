@@ -48,3 +48,15 @@ class Matrix:
         for row in self._matrix:
             result += " ".join(str(cell) for cell in row) + "\n"
         return result.strip() 
+    
+matrix1 = Matrix(5, 5, 5)
+print("Macierz o wymiarach 5 x 5, wypełniona cyframi 5:")
+print(matrix1)
+print(f"\nKomórka o indeksie [0,0] posiada wartość: {matrix1.get_cell(0, 0)}")
+print(f"Zmieniamy jej wartość na 0")
+matrix1.set_cell(0, 0, 0)
+print(f"Komórka o indeksie [0,0] posiada wartość: {matrix1.get_cell(0, 0)}")
+print("Sprawdźmy, drukując raz jeszcze macierz")
+print(matrix1)
+print("\n A co się stanie jeśli chcielbyśmy zmienić indeks komórki w macierzy spoza zadeklarowanego zakresu (5 x 5)?")
+matrix1.set_cell(6, 10, 1)
