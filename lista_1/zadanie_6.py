@@ -53,7 +53,7 @@ class Pet:
 # - metoda eat() powinna zmniejszać poziom głodu zwierzaka o liczbę przekazaną poprzez parametr food (o wartości domyślnej równej 4);
 # - metoda play() powinna zmniejszać poziom znudzenia zwierzaka o liczbę przekazaną poprzez parametr fun (o wartości domyślnej równej 4);
 # - każda z trzech metod (talk(), eat(), play()) obiektu klasy Pet powinna wywoływać prywatną metodę _passage_of_time();
-
+    @property
     def talk(self):
         print(f"Jestem... {self.mood}")
         self._passage_of_time()
@@ -79,7 +79,6 @@ class Pet:
 
 def main():
     name = input("Jak chcesz nazwać swojego zwierzaka?")
-    mnoznik_czasu = 1
     pet = Pet(name)
     print("MENU")
     print(f"Co chcesz porobić ze swoim zwierzakiem 🐶: {name}")
@@ -87,10 +86,45 @@ def main():
     while True:
         action = input("Wprowadź polecenie: ")
         if action == "1":
-            food = input("Ile jedzenia chcesz dać swojemu pupilowi? (1-5): ")
+            food = int(input("Ile jedzenia chcesz dać swojemu pupilowi? (1-5): "))
             if not 1 <= food <= 5:
                 print("Próbujesz dać za dużo lub za mało jedzenia, wprowadź wartość między 1 a 5")
             elif not isinstance(food, int):
                 print("Ilość jedzenia musi być liczbą całkowitą!")
             else:
                 pet.eat(food)
+                print("Ty: 🍖 Czas na jedzonko!")
+                print("Pies: 🐶 *niucha jedzenie* 👃🍖")
+                print("Pies zajada... 😋🍗🍖")
+                if (pet.hunger < 15):
+                    pet._passage_of_time()
+        elif action == "2":
+            fun = int(input("Ile atencji chcesz dać swojemu pupilowi? (1-5): "))
+            if not 1 <= fun <= 5:
+                print("Próbujesz dać za dużo lub za mało atencji, wprowadź wartość między 1 a 5")
+            elif not isinstance(fun, int):
+                print("Ilość atencji musi być liczbą całkowitą!")
+            else:
+                pet.play(fun)
+                print("Ty: ⚾ Rzuć piłkę!")
+                print("Pies: 🐶 ...")
+                print("Pies biegnie... 🐾🐾🐾")
+                print("Pies łapie piłkę! 🐶⚾")
+                print("Pies wraca... 🐾🐾🐾")
+                print("Pies oddaje piłkę! 🐶👉⚾")
+                print("Dobra zabawa! 🥳")
+                if (pet.tiredness < 15):
+                    pet._passage_of_time()
+        elif action == "3":
+            pet.talk
+        elif action == "s":
+            print(pet)
+        elif action == "q":
+            break
+        else:
+            print("MENU")
+            print(f"Co chcesz porobić ze swoim zwierzakiem 🐶: {name}")
+            print("[1] Nakarm\n[2] Pobaw się\n[3] Porozmawiaj\n[s] Pokaż stan zwierzaka\n[q] Wyjście\n\nWprowadzenie innego klawisza niż przypisane spowoduje ponowne wyświetlenie menu!")
+
+if __name__ == "__main__":
+    main()
